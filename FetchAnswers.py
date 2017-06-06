@@ -15,7 +15,7 @@ class AnswersFetcher(object):
 
         question = self.client.question(question_id)
         clean_title = question.title.replace('/', ',')
-        with open(dir + 'question_title.txt', 'w') as f:
+        with open(dir + 'question_title.txt', 'a') as f:
             print(question.title.encode('utf-8'), file=f)
 
         print(dir + clean_title + '.txt')
