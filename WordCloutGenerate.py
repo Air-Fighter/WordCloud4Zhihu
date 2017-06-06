@@ -19,9 +19,9 @@ for seg in segs:
     if len(seg) > 1 and seg != '\r\n':
         segment.append(seg)
 
-words_df = pandas.DataFrame({'segment':segment})
+words_df = pandas.DataFrame({'segment': segment})
 words_df.head()
-stopwords = pandas.read_csv("stopwords_cn.txt", index_col=False, quoting=3, sep="\t",
+stopwords = pandas.read_csv("stopwords.txt", index_col=False, quoting=3, sep="\t",
                           names=['stopword'], encoding="utf8")
 words_df = words_df[~words_df.segment.isin(stopwords.stopword)]
 
@@ -35,5 +35,5 @@ wordcloud = WordCloud(font_path='simhei.ttf', background_color='black')
 wordcloud = wordcloud.fit_words(words_stat.head(1000).itertuples(index=False))
 plt.axis('off')
 plt.imshow(wordcloud)
-plt.savefig('./result.png', dpi=600)
+plt.savefig('./result_nostop.png', dpi=600)
 plt.show()
